@@ -9,12 +9,18 @@
       "displayName": "Input Variables",
       "kind": "Grouping",
       "name": "Variables"
+    },
+	{
+      "displayName": "ID",
+      "description": "Optional unique ID. Recommended to avoid removal of duplicate rows.",
+      "kind": "Grouping",
+      "name": "UniqueID"
     }
   ],
   "dataViewMappings": [
     {
 	 "conditions": [
-           { "Target": { "max": 1 }, "Variables": { "max": 1000 } }
+           { "Target": { "max": 1 }, "Variables": { "max": 1000 },"UniqueID": { "max": 1 }  }
       ],
 
       "scriptResult": {
@@ -23,7 +29,8 @@
             "rows": {
                 "select": [
                 { "for": { "in": "Target" } },
-                { "for": { "in": "Variables" } }
+                { "for": { "in": "Variables" } },
+                { "for": { "in": "UniqueID" } }
               ],
               "dataReductionAlgorithm": {
                 "top": { }
@@ -62,9 +69,7 @@
     "settings_tree_params":{
         "displayName": "Tree parameters",
         "properties": {
-           "show": {
-                "type": {"bool": true}
-            },
+          
             "maxDepth":{
             "displayName": "Maximum depth",
              "description": "Maximum depth (approximate)",
@@ -188,9 +193,7 @@
         "displayName": "Advanced parameters",
         "description": "Controls the recursive partitioning algorithm",
         "properties": {
-           "show": {
-                "type": {"bool": true}
-            },
+          
             "complexity":{
             "displayName": "Complexity",
             "description": "Split that does not decrease the overall lack of fit by a factor of 'complexity' is not attempted",
@@ -324,9 +327,7 @@
     "settings_additional_params":{
         "displayName": "Additional parameters",
         "properties": {
-           "show": {
-                "type": {"bool": true}
-            },
+          
           "showWarnings":{
             "displayName": "Show warnings",
             "type": {  "bool": true}
